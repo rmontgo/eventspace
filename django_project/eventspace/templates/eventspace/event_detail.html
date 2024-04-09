@@ -7,8 +7,12 @@
         <h2><strong>Event Name: </strong>{{event.title}}</h2>
     </div>
     <div class="card-body">
-        <h5 class="card-text"><strong>Description: </strong>{{ event.description }}</h5>
-        <h5 class="card-text"><strong>When: </strong>{{ event.date }}</h5>
+        <h5 class="card-text"><strong>Description: </strong>{{ event.description }}</h5><br>
+        <h5 class="card-text"><strong>When: </strong>{{ event.date }},
+        {% if event.start is not None %}
+        {{ event.start }} - {{ event.end }}
+        {% endif %}
+        </h5>
         <h5 class="card-text"><strong>Where: </strong>{{ event.location }}</h5>
 
 
