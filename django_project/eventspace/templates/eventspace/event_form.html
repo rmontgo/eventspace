@@ -1,0 +1,12 @@
+{% extends 'eventspace/base_template.html' %}
+
+{% block content %}
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table style="font-size:16pt">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" name="Submit" class="btn btn-primary btn-lg">
+    </form>
+{% endblock %}

@@ -5,6 +5,10 @@ from django.urls import reverse
 class Event(models.Model):
     title = models.CharField(max_length=200, blank=False)
     location = models.CharField(max_length=200, blank=False)
-    date = models.DateTimeField(blank=False)
-    image = models.ImageField()
-    description = models.TextField()
+    image = models.ImageField(blank=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.title
+    def get_absolute_url(self):
+        return reverse('event-detail', args=[str(self.id)])
