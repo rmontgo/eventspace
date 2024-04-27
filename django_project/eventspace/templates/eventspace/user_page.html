@@ -1,0 +1,45 @@
+<!-- inherit from base.html-->
+{% extends "eventspace/base_template.html" %}
+{% load static %}
+
+
+<!-- Replace block content in base_template.html -->
+{% block content %}
+
+
+<h1>Logged in as {{user}}</h1>
+
+{% for message in messages %}
+<p class='text-success'>{{message}}</p>
+{% endfor %}
+
+<h2>My Events</h2>
+
+<div class = "row">
+    {% for event in events %}
+    <div class="card" style="width: 18rem;">
+        <br>
+        {% if event.image %}
+        <img class = "img-fluid" src="{{ event.image.url }}" style = "max-height: 300px; width: auto;">
+        {% else %}
+        <img src="{% static 'images/Clock.png' %}" style = "max-height: 300px; width: auto;">
+        {% endif %}
+        <div class="card-body">
+        </div>
+        <ul class = "list-group list-group-flush">
+                <li class="list-group-item"><h3 class = "card-title">{{ event.title }}</h3></li>
+                <li class="list-group-item">{{ event.date }}</li>
+                <li class="list-group-item">{{ event.location }}</li>
+                <li class="list-group-item">
+                    <a href="{% url 'event-detail' event.id %}" class="btn btn-primary" aria-pressed="true">View</a>
+                    <a href="{% url 'update-event' event.id %}" class="btn btn-secondary" aria-pressed="true">Update</a>
+                    <a href="{% url 'delete-event' event.id %}" class="btn btn-danger" aria-pressed="true">Delete</a>
+                </li>
+            </ul>
+    </div>
+    
+    {% endfor %}
+</div>
+    <br><a href="{% url 'create-event' %}" class="btn btn-success btn-lg" aria-pressed='true'>Add Event</a>
+
+{% endblock %}

@@ -2,21 +2,29 @@
 
 {% block content %}
 <br><br>
-<div class="card mb-4" style="width: 50%; height: 20rem;">
+<div class="card mb-4" style="width: 50%; height: auto;">
     <div class="card-header">
-        <h2><strong>Event Name: </strong>{{event.title}}</h2>
+        <h2><strong>Event: </strong>{{event.title}}</h2>
     </div>
+    {% if event.image %}
+    <img class = "img-fluid" src="{{ event.image.url }}" style = "max-width: 90%; height: auto;">
+    {% endif %}
     <div class="card-body">
+        <h5 class="card-text"><strong>Host: </strong>{{ event.host }}</h5><br>
         <h5 class="card-text"><strong>Description: </strong>{{ event.description }}</h5><br>
         <h5 class="card-text"><strong>When: </strong>{{ event.date }},
-        {% if event.start is not None %}
-        {{ event.start }} - {{ event.end }}
-        {% endif %}
+            {% if event.start is not None %}
+            {{ event.start }} - {{ event.end }}
+            {% endif %}
         </h5>
         <h5 class="card-text"><strong>Where: </strong>{{ event.location }}</h5>
-
-
     </div>
 </div>
+<br>
+{% if user.is_authenticated %}
+<a href="{% url 'user_page' %}" class="btn btn-primary btn-lg">Back to My Events</a>
+
+{% else %}
 <a href="{% url 'event-list' %}" class="btn btn-primary btn-lg">Back to Events</a>
+{% endif %}
 {% endblock content%}

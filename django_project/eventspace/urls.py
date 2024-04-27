@@ -1,4 +1,6 @@
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -8,4 +10,10 @@ urlpatterns = [
         path('events/create', views.createEvent, name='create-event'),
         path('events/<int:id>/update', views.updateEvent, name="update-event"),
         path('events/<int:id>/delete', views.deleteEvent, name='delete-event'),
+        path('accounts/', include('django.contrib.auth.urls')),
+        path('accounts/register/', views.registerPage, name = 'register_page'),
+        path('user/', views.userPage, name='user_page'),
 ]
+
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

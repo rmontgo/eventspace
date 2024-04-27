@@ -26,11 +26,15 @@
            <div class="navbar-nav">
              <a class="nav-link active" aria-current="page" href="{% url 'index' %}" style="color:white">Home</a>
              <a class="nav-link active" aria-current="page" href="{% url 'event-list' %}" style="color:white">Events</a>
-
              {% if user.is_authenticated %}
-               
+             <a class="nav-link active" aria-current="page" href="{% url 'user_page' %}" style="color:white">Manage My Events</a>
+
+             <form action="{% url 'logout' %}" method="POST">
+              {% csrf_token %}
+              <button class="nav-link active" aria-current="page" type ="submit" style="color:white">Log out</button>
+             </form>
              {% else %}
-               
+             <a class="nav-link active" aria-current="page" href="{% url 'login' %}?next={{request.path}}" style="color:white">Login</a>
              {% endif %}
            </div>
          </div>
@@ -39,7 +43,6 @@
 
 
        <div class="col-sm-10">
-         <!-- add block content from html template -->
          {% block content %}
          {% endblock %}
        </div>

@@ -2,7 +2,7 @@
 
 {% block content %}
     <br>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table style="font-size:16pt">
             {{ form.as_table }}

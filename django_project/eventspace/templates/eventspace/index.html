@@ -4,11 +4,20 @@
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
-<h1>Eventspace: Events in time and space!</h1>
+<h1>Eventspace - Events in time and space!</h1>
 
+{% for message in messages %}
+<p class='text-success'>{{message}}</p>
+{% endfor %}
 
 <h2>App Overview</h2>
 <p>Welcome to EventSpace!  This app is here to help you find out about upcoming events in the apartment complex.  Currently, there are {{total_events}} events scheduled.</p>
 
+
+{% if user.is_authenticated %}
+    <p>Logged in as {{user}}</p>
+{% else %}
+  
+{% endif %}
 
 {% endblock %}
